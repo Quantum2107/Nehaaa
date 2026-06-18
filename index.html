@@ -64,27 +64,38 @@ padding:20px;
 }
 
 .card{
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(15px);
+background:rgba(255,255,255,0.4);
+backdrop-filter:blur(18px);
 padding:40px;
 border-radius:30px;
 text-align:center;
 max-width:800px;
 width:100%;
-box-shadow:0 15px 40px rgba(0,0,0,0.2);
+box-shadow:0 15px 40px rgba(0,0,0,0.25);
+color:#fff;
 }
 
 h1{
 font-size:3rem;
 font-family:'Dancing Script',cursive;
 margin-bottom:20px;
+color:#ffffff;
+text-shadow:0 3px 12px rgba(0,0,0,0.35);
 }
 
-.subtitle{
-font-size:1.2rem;
-margin-bottom:35px;
+h2,h3{
+color:#fff;
+text-shadow:0 2px 8px rgba(0,0,0,0.35);
 }
 
+.subtitle,
+p,
+li,
+label{
+color:#ffffff;
+text-shadow:0 2px 6px rgba(0,0,0,0.3);
+font-weight:500;
+}
 .buttons{
 position:relative;
 height:150px;
@@ -343,34 +354,50 @@ Can't wait to see you, Neha 💖
 const noBtn=document.getElementById("noBtn");
 const yesBtn=document.getElementById("yesBtn");
 
-let noTexts=[
-"No",
-"Are you sure? 😢",
-"Really? 🥺",
+let noTexts = [
+"No 😅",
+"Are you sure? 🥺",
 "Think again ❤️",
-"Pretty Please? 🌹",
-"Come On 😭",
-"You Know You Want To 😏",
-"Still No? 😭"
+"That seems incorrect 🤔",
+"Try the other button 😌",
+"Still no? 🌹",
+"I respectfully disagree 😭",
+"Nice try 😂",
+"YES is looking lonely 👉",
+"Come on Neha ❤️"
 ];
 
 let count=0;
 
+noBtn.style.transition = "all 0.4s ease";
+
 noBtn.addEventListener("mouseover",()=>{
 
-let x=Math.random()*(window.innerWidth-150);
-let y=Math.random()*(window.innerHeight-100);
+const currentX = noBtn.offsetLeft;
+const currentY = noBtn.offsetTop;
 
-noBtn.style.left=x+"px";
-noBtn.style.top=y+"px";
+const moveX = (Math.random() * 200) - 100;
+const moveY = (Math.random() * 120) - 60;
+
+let newX = currentX + moveX;
+let newY = currentY + moveY;
+
+const maxX = window.innerWidth - 150;
+const maxY = window.innerHeight - 120;
+
+newX = Math.max(20, Math.min(newX, maxX));
+newY = Math.max(20, Math.min(newY, maxY));
+
+noBtn.style.left = newX + "px";
+noBtn.style.top = newY + "px";
 
 count++;
 
-if(count<noTexts.length){
-noBtn.innerText=noTexts[count];
+if(count < noTexts.length){
+noBtn.innerText = noTexts[count];
 }
 
-yesBtn.style.transform=`scale(${1+(count*0.08)})`;
+yesBtn.style.transform = `scale(${1 + (count * 0.05)})`;
 
 });
 
